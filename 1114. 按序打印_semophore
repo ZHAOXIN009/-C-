@@ -1,0 +1,30 @@
+```
+#include <semaphore.h>
+class Foo {
+public:
+    sem_t m1, m2;
+    Foo() {
+        
+    }
+
+    void first(function<void()> printFirst) {
+        
+        // printFirst() outputs "first". Do not change or remove this line.
+        printFirst();
+        sem_post(&m1);
+    }
+
+    void second(function<void()> printSecond) {
+        sem_wait(&m1);
+        // printSecond() outputs "second". Do not change or remove this line.
+        printSecond();
+        sem_post(&m2);
+    }
+
+    void third(function<void()> printThird) {
+        sem_wait(&m2);
+        // printThird() outputs "third". Do not change or remove this line.
+        printThird();
+    }
+};
+```
