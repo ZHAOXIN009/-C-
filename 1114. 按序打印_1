@@ -1,0 +1,32 @@
+最原始方法
+```
+class Foo {
+public:
+    mutex m1, m2;
+     unique_lock<mutex> u1, u2;
+    Foo(): u1(m1, try_to_lock),
+        u2(m2, try_to_lock){
+    }
+
+    void first(function<void()> printFirst) {
+        
+        // printFirst() outputs "first". Do not change or remove this line.
+        printFirst();
+        u1.unlock();
+
+    }
+
+    void second(function<void()> printSecond) {
+        lock_guard<mutex>g1(m1);
+        // printSecond() outputs "second". Do not change or remove this line.
+        printSecond();
+        u2.unlock();
+    }
+
+    void third(function<void()> printThird) {
+        lock_guard<mutex>g2(m2);
+        // printThird() outputs "third". Do not change or remove this line.
+        printThird();
+    }
+};
+```
